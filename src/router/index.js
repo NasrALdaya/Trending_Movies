@@ -17,6 +17,7 @@ const router = createRouter({
   routes,
 });
 
+// Change the page title tag when push to page
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} - Trending Movies`;
   next();

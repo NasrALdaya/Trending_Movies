@@ -5,7 +5,7 @@
 
       <div class="statistics-wrap">
         <StatItem
-          v-for="(stat, index) in sampleStats"
+          v-for="(stat, index) in statistics"
           :key="index"
           :statData="stat"
         />
@@ -15,32 +15,12 @@
 </template>
 
 <script>
+// each statistic is in a separate component
 import StatItem from "./StatisticsItem.vue";
 
 export default {
   name: "StatisticsMovies",
-  data() {
-    return {
-      sampleStats: [
-        {
-          title: "Title over 7",
-          value: "25",
-        },
-        {
-          title: "Title less than 6",
-          value: "10",
-        },
-        {
-          title: "Total votes count",
-          value: "30M",
-        },
-        {
-          title: "Action titles",
-          value: "25%",
-        },
-      ],
-    };
-  },
+  props: ["statistics"],
   components: {
     StatItem,
   },

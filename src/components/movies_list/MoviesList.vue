@@ -33,179 +33,18 @@ export default {
   name: "MoviesList",
   data() {
     return {
-      sampleMovies: [
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 0,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 1,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 2,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 3,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 4,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 5,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 6,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 7,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 8,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 9,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 10,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 11,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 12,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 13,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 14,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 15,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 16,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 17,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 18,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 19,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 20,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 21,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 22,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 23,
-          imagePath: "cover-03",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 24,
-          imagePath: "cover-01",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 25,
-          imagePath: "cover-02",
-        },
-        {
-          title: "Movie Title",
-          date: "25-4-2023",
-          voteAverage: 26,
-          imagePath: "cover-03",
-        },
-      ],
       currentPage: 1,
+      // the number of shown movies per page
       itemsPerPage: 9,
-      modalActive: null,
     };
   },
   components: {
     Movie,
   },
+  props: ["moviesList"],
   methods: {
+    // pagination controlers
+    // methods that update the currentPage property
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -216,21 +55,18 @@ export default {
     },
     nextPage() {
       if (this.currentPage < this.pageCount) {
-        console.log("go");
         this.currentPage++;
       }
     },
   },
   computed: {
+    // calculates the start index of the current page and returns a subset of items based on the current page and the number of items per page
     paginatedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      return this.sampleMovies.slice(
-        startIndex,
-        startIndex + this.itemsPerPage
-      );
+      return this.moviesList.slice(startIndex, startIndex + this.itemsPerPage);
     },
     pageCount() {
-      return Math.ceil(this.sampleMovies.length / this.itemsPerPage);
+      return Math.ceil(this.moviesList.length / this.itemsPerPage);
     },
   },
 };

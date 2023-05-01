@@ -26,9 +26,13 @@ export default {
 
   .value {
     display: block;
-    font-size: 55px;
+    font-size: 50px;
     font-weight: 600;
     text-align: center;
+
+    @media (min-width: 768px) {
+      font-size: 55px;
+    }
   }
 }
 </style>

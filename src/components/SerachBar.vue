@@ -3,10 +3,10 @@
     <div class="container">
       <form>
         <div class="input">
-          <input type="text" placeholder="Movie title" v-model="search" />
+          <input type="text" placeholder="Movie title" v-model="searchInput" />
           <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="icon" />
         </div>
-        <button class="btn" @click.prevent="">Search</button>
+        <button class="btn" @click.prevent="searchMovies">Search</button>
       </form>
     </div>
   </div>
@@ -17,8 +17,14 @@ export default {
   name: "SearchBar",
   data() {
     return {
-      search: "",
+      searchInput: "",
     };
+  },
+  methods: {
+    searchMovies() {
+      // Emit a custom search event with the current search query
+      this.$emit("search", this.searchInput);
+    },
   },
 };
 </script>

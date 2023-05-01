@@ -1,17 +1,14 @@
 <template>
   <div class="movie">
     <div class="image">
-      <img
-        :src="require(`../../assets/imgs/${movie.imagePath}.jpg`)"
-        :alt="movie.imagePath"
-      />
+      <img :src="getMoviePoster(movie)" :alt="movie.title" />
     </div>
     <div class="info">
       <h3 class="title">{{ movie.title }}</h3>
       <p class="date">
-        <time>{{ movie.date }}</time>
+        Date: <time>{{ movie.release_date }}</time>
       </p>
-      <p class="vote">Rate: {{ movie.voteAverage }}</p>
+      <p class="vote">Vote Average: {{ voteFixed }}</p>
     </div>
   </div>
 </template>
@@ -20,6 +17,19 @@
 export default {
   name: "MovieItem",
   props: ["movie"],
+  methods: {
+    // joining the image url with poster path to get the movie poster url
+    getMoviePoster(movie) {
+      return (
+        "https://www.themoviedb.org/t/p/w220_and_h330_face" + movie.poster_path
+      );
+    },
+  },
+  computed: {
+    voteFixed() {
+      return this.movie.vote_average.toFixed(1);
+    },
+  },
 };
 </script>
 
@@ -50,20 +60,25 @@ export default {
 
   .image {
     width: 120px;
+    height: auto;
     border-radius: 6px;
     overflow: hidden;
     transition: var(--transition);
+    flex: 1;
 
     img {
       display: block;
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
   .info {
+    flex: 2;
+
     .title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 500;
       text-transform: capitalize;
       margin-bottom: 10px;

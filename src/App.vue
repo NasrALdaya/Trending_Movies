@@ -34,8 +34,7 @@ export default {
 
 :root {
   --main-clr: #01dbc6;
-  --second-clr: #00bcaa;
-  --pink-clr: #f48fb1;
+  --second-clr: #009183;
   --bg-01: #251f1d;
   --bg-02: #4a4741;
   --text-clr: #e5e3df;
